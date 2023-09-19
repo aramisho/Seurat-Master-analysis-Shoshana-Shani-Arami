@@ -21,6 +21,9 @@ load("~/cluster_jobs/NEWsplits/Object_SSp.RData")
 load("~/cluster_jobs/NEWsplits/Object_SSs_GU_VISC_AIp.RData")
 load("~/cluster_jobs/NEWsplits/Object_TEa_PERI_ECT.RData")
 
+save(Object_ACA, Object_AI,Object_SSs_GU_VISC_AIp, Object_TEa_PERI_ECT,Object_SSp,
+     Object_RSP,Object_PTLp,Object_AUD,Object_ENT,Object_HIP,Object_MOp,Object_MOs_FRP,
+     Object_PAR_POST_PRE_SUB_ProS,Object_PL_ILA_ORB, file = "UMAP_Objects.RData")
 
 
 #creat seurat objects list 
@@ -42,7 +45,8 @@ seurat_list <- append(seurat_list, c( ACA=Object_ACA ,HIP= Object_HIP   ,
                                       
                                       PTLp= Object_PTLp , PL_ILA_ORB = Object_PL_ILA_ORB , MOs_FRP= Object_MOs_FRP))
 
-
+#or
+load("~/cluster_jobs/UMAP_Objects.RData")
 #Normalize the Data
 
 seurat_list_log<- lapply(X = seurat_list, FUN = function(x) {
