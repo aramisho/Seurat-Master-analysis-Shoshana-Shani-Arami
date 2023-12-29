@@ -63,7 +63,7 @@ VISp<-read.csv(file ="VISp.csv",row.names = "sample_name", header = TRUE)
 VISm<-read.csv(file ="VISm.csv",row.names = "sample_name", header = TRUE)
 
 
-#creat matadata or read: cluster_label:Cell type cluster name
+#create  matadata or read: cluster_label:Cell type cluster name
 
 
 
@@ -193,7 +193,7 @@ matadata_VISp_subclass_label<- select(VISp,subclass_label)
 
 
 
-#creat data frames 
+#create data frames 
 
 df_ACA <- subset (ACA, select = -c(class_label,cluster_label,class_label,subclass_label,region_label) )
 df_ACA_t<- t(df_ACA)
@@ -243,7 +243,6 @@ df_RSP_t<- t(df_RSP)
 
 
 
-
 df_SSp <- subset (SSp, select = -c(class_label,cluster_label,class_label,subclass_label,region_label) )
 df_SSp_t<- t(df_SSp)
 #df_SSp<-na.omit(df_SSp)
@@ -281,7 +280,7 @@ df_VISm_t<- t(df_VISm)
 #df_VISm<-na.omit(df_VISm)
 
 
-#creat seurat objects
+#create seurat objects
 
 Object_ACA<-CreateSeuratObject(counts  = df_ACA_t, project="ACA", 
                                min.cells = 0, min.features = 200)
@@ -474,9 +473,9 @@ Object_VISm<-AddMetaData(object=Object_VISm,metadata=matadata_VISm_subclass_labe
 
 
 
-#creat empty list
+#create empty list
 seurat_list <- c()
-#append seurat object to list
+#append seurat objects to list
 
 seurat_list <- append(seurat_list, c(Object_ACA,Object_HIP,Object_SSs_GU_VISC_AIp,
                                      Object_MOp,Object_ENT,Object_AUD,Object_AI,Object_AI,Object_PAR_POST_PRE_SUB_ProS,
