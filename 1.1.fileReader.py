@@ -21,13 +21,7 @@ class FilesInPath:
         self.__initQueue()
 
     def read_file(self, file_name):
-        """
-        This function is reading a parquet file contains several tweets
-        The file location is given as a string as an input to this function.
-        :param file_name: string - indicates the path to the file we wish to read.
-        :return: a dataframe contains tweets.
-        """
-
+       
         df = pd.read_csv(self.path + '/' + file_name, sep=',', engine='python')
         return df
 
