@@ -2,7 +2,8 @@ import pandas as pd
 import fileReader
 from fileReader import FilesInPath
 
-#
+#incorporated and matched relevant cell information from the metadata file, including labels such as class, cluster, subclass, and region
+
 metadata = pd.read_csv('/home/local/BGU-USERS/aramisho/py_projects/allen_brain_mouse/metadata (1).csv')
 transpose_matrix_files = FilesInPath('/home/local/BGU-USERS/aramisho/py_projects/allen_brain_mouse/matrix_split/splits')
 output_path = '/home/local/BGU-USERS/aramisho/py_projects/allen_brain_mouse/matrix_split/non_normalized_by_region/'
