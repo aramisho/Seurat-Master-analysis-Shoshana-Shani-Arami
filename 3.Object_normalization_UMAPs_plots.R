@@ -50,6 +50,7 @@ seurat_list <- append(seurat_list, c( ACA=Object_ACA ,HIP= Object_HIP   ,
 
 #or
 load("~/cluster_jobs/UMAP_Objects.RData")
+
 #Normalize the Data
 
 seurat_list_log<- lapply(X = seurat_list, FUN = function(x) {
@@ -57,7 +58,7 @@ seurat_list_log<- lapply(X = seurat_list, FUN = function(x) {
   x <- FindVariableFeatures(x,selection.method= "mean.var.plot",verbose = TRUE)
 })
 
-#creat list of interes genes 
+#creat list of interest genes 
 
 my_genes <- c("Camkmt","Calm1","Calm2","Calm3","Actb")
 
@@ -67,6 +68,7 @@ features_log <- SelectIntegrationFeatures(object.list =seurat_list_log ,  nfeatu
 features_log <- append(features_log,my_genes)
 
 # Scaling, dimensionality reduction analysis
+
 seurat_list_log <- lapply(X =seurat_list_log, FUN = function(x) {
   x <- ScaleData(x, features = features_log, verbose = TRUE)
   x <- RunPCA(x, features = features_log, verbose = TRUE)
@@ -74,7 +76,7 @@ seurat_list_log <- lapply(X =seurat_list_log, FUN = function(x) {
 })
 
 
-#################################################  ploting ############################
+############################  ploting #### UMAPS ########################
 
 
 #.....................subclass...........organized by class.........................
@@ -170,96 +172,25 @@ ploting_expression_log_class(seurat_list_log)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#  ,repel = T  legend.position = "none",
-
-
-plot <- lapply(X = seurat_list_log, FUN = function(x) {
+#plot <- lapply(X = seurat_list_log, FUN = function(x) {
   
-  x <-DimPlot(x,raster=FALSE, group.by = "subclass", label = T,repel = T,split.by="class")  + ggtitle(paste( "subclass of Brain region" ,levels(x) ))
+#  x <-DimPlot(x,raster=FALSE, group.by = "subclass", label = T,repel = T,split.by="class")  + ggtitle(paste( "subclass of Brain region" ,levels(x) ))
   
   
-  x + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
-                                                                                    legend.key.height = unit(0.3, 'cm'), #change legend key height
-                                                                                    legend.key.width = unit(0.5, 'cm'), #change legend key width
-                                                                                    legend.title = element_text(size=10), #change legend title font size
-                                                                                    legend.text = element_text(size=8)) #change legend text font size
-  
-  
-  print(x)
-  
-})
-
-######################################################################################theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
-legend.key.height = unit(0.3, 'cm'), #change legend key height
-legend.key.width = unit(0.5, 'cm'), #change legend key width
-legend.title = element_text(size=10), #change legend title font size
-legend.text = element_text(size=8)) #change legend text font size
-#####################################################################################
+#  x + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
+#                                                                                    legend.key.height = unit(0.3, 'cm'), #change legend key height
+ #                                                                                   legend.key.width = unit(0.5, 'cm'), #change legend key width
+  #                                                                                  legend.title = element_text(size=10), #change legend title font size
+   #                                                                                 legend.text = element_text(size=8)) #change legend text font size
+  #
+  #
+  #print(x)
+  #
+#})
 
 
+############## chosen ###############
 
-
-
-# 
-jpeg( paste("TESTTTT:",".jpg"),width= 1000, height =600 )
-
-
-
-rc_plot_sub <-DimPlot(seurat_list_rc[[3]],raster=FALSE, group.by = "subclass", repel = T,label=TRUE,label.size=4)+ ggtitle(paste( "subclass of Brain region" ,levels(x =seurat_list_rc[[3]]) ))
-rc_plot_sub + FontSize(x.title = 15, y.title = 15 , x.text = 13,  y.text = 13,main = 20) +theme(legend.key.size = unit(100, 'cm'), #change legend key size
-                                                                                                legend.key.height = unit(1.1, 'cm'), #change legend key height
-                                                                                                legend.key.width = unit(0.1, 'cm'), #change legend key width
-                                                                                                legend.title = element_text(size=10), #change legend title font size
-                                                                                                legend.text = element_text(size=10), #change legend text font size
-                                                                                                legend.spacing.y = unit(0.2, "cm"))
-
-rc_plot_sub+ guides(col = guide_legend(nrow = 1))
-dev.off()
-
-
-
-
-
-
-rc_plot_sub<-DimPlot(seurat_list_rc[[1]],raster=FALSE, group.by = "cluster")
-rc_plot_sub + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.00000001, 'cm'), #change legend key size
-                                                                                            legend.key.height = unit(0.3, 'cm'), #change legend key height
-                                                                                            legend.key.width = unit(0.5, 'cm'), #change legend key width
-                                                                                            legend.title = element_text(size=10), #change legend title font size
-                                                                                            legend.text = element_text(size=8)) #change legend text font size
-
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
-############## chosennnnnnnnnnnnnnnnnnnnnn
 #***************log+mpv*********************
 #*
 #*
