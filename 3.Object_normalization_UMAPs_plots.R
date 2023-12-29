@@ -52,6 +52,7 @@ seurat_list <- append(seurat_list, c( ACA=Object_ACA ,HIP= Object_HIP   ,
 load("~/cluster_jobs/UMAP_Objects.RData")
 
 #Normalize the Data
+#***************log+mpv*********************
 
 seurat_list_log<- lapply(X = seurat_list, FUN = function(x) {
   x <- NormalizeData(x,normalization.method ="LogNormalize",scale.factor = 1e6 ,verbose = TRUE)
@@ -168,103 +169,5 @@ ploting_expression_log_class <- function(list) {
 
 
 ploting_expression_log_class(seurat_list_log)
-
-
-
-
-#plot <- lapply(X = seurat_list_log, FUN = function(x) {
-  
-#  x <-DimPlot(x,raster=FALSE, group.by = "subclass", label = T,repel = T,split.by="class")  + ggtitle(paste( "subclass of Brain region" ,levels(x) ))
-  
-  
-#  x + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
-#                                                                                    legend.key.height = unit(0.3, 'cm'), #change legend key height
- #                                                                                   legend.key.width = unit(0.5, 'cm'), #change legend key width
-  #                                                                                  legend.title = element_text(size=10), #change legend title font size
-   #                                                                                 legend.text = element_text(size=8)) #change legend text font size
-  #
-  #
-  #print(x)
-  #
-#})
-
-
-############## chosen ###############
-
-#***************log+mpv*********************
-#*
-#*
-
-seurat_list_log<- lapply(X = seurat_list, FUN = function(x) {
-  x <- NormalizeData(x,normalization.method ="LogNormalize",scale.factor = 1e6 ,verbose = TRUE)
-  x <- FindVariableFeatures(x,selection.method= "mean.var.plot",verbose = TRUE)
-})
-
-
-features_log <- SelectIntegrationFeatures(object.list =seurat_list_log ,  nfeatures = 2000,assay = NULL,verbose = TRUE)
-
-seurat_list_log <- lapply(X =seurat_list_log, FUN = function(x) {
-  x <- ScaleData(x, features = features_log, verbose = TRUE)
-  x <- RunPCA(x, features = features_log, verbose = TRUE)
-})
-#
-
-
-anchors_log <- FindIntegrationAnchors(object.list = seurat_list_log, reference = NULL, reduction = "rpca",dims = 1:50)
-
-
-#features_log <- SelectIntegrationFeatures(object.list =seurat_list_log ,  nfeatures = 2000,assay = NULL,verbose = TRUE)
-
-#seurat_list_log <- lapply(X =seurat_list_log, FUN = function(x) {
-# x <- ScaleData(x, features = features_log, verbose = TRUE)
-#  x <- RunPCA(x, features = features_log, verbose = TRUE)
-#})
-#
-
-
-#anchors_log <- FindIntegrationAnchors(object.list = seurat_list_log, reference = NULL, reduction = "rpca",dims = 1:50)
-
-
-
-#list.integrated_log <- IntegrateData(anchorset = anchors_log, dims = 1:50)
-
-#list.integrated_log <- ScaleData(list.integrated_log, verbose = TRUE)
-
-#list.integrated_log <- RunCCA(list.integrated_log, verbose = TRUE)
-
-list.integrated_log <- RunPCA(list.integrated_log, verbose = TRUE)
-list.integrated_log <- RunUMAP(list.integrated_log, dims = 1:50)
-
-#save(list.integrated_rc,file= "list.integrated_log.RData")
-
-
-# ploting 
-
-log_plot<-DimPlot(list.integrated_log,raster=FALSE, group.by = "region_label")
-log_plot + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
-                                                                                         legend.key.height = unit(0.3, 'cm'), #change legend key height
-                                                                                         legend.key.width = unit(0.5, 'cm'), #change legend key width
-                                                                                         legend.title = element_text(size=10), #change legend title font size
-                                                                                         legend.text = element_text(size=8)) #change legend text font size
-
-
-log_plot<-DimPlot(list.integrated_log,raster=FALSE, group.by = "subclass")
-log_plot + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(0.5, 'cm'), #change legend key size
-                                                                                         legend.key.height = unit(0.3, 'cm'), #change legend key height
-                                                                                         legend.key.width = unit(0.5, 'cm'), #change legend key width
-                                                                                         legend.title = element_text(size=10), #change legend title font size
-                                                                                         legend.text = element_text(size=8)) #change legend text font size
-
-
-
-
-log_plot<-DimPlot(list.integrated_log,raster=FALSE, group.by = "class")
-log_plot + FontSize(x.title = 7, y.title = 7 , x.text = 7,  y.text = 5,main = 10) +theme(legend.key.size = unit(3, 'cm'), #change legend key size
-                                                                                         legend.key.height = unit(0.3, 'cm'), #change legend key height
-                                                                                         legend.key.width = unit(0.5, 'cm'), #change legend key width
-                                                                                         legend.title = element_text(size=10), #change legend title font size
-                                                                                         legend.text = element_text(size=8)) #change legend text font size
-
-
 
 
