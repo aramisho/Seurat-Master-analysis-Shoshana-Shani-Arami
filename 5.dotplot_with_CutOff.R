@@ -6,10 +6,8 @@ library(ggplot2)
 library("Hmisc")
 library(tidyverse)
 
-
-
+#Loading the normalized data
 load("~/cluster_jobs/UMAP_Objects.RData")
-
 
 seurat_list_log
 
