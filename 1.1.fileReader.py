@@ -2,6 +2,8 @@ import os
 import pandas as pd
 import queue
 
+#incorporated and matched relevant cell information from the metadata file, including labels such as class, cluster, subclass, and region
+
 class FilesInPath:
 
     def __initQueue(self):
