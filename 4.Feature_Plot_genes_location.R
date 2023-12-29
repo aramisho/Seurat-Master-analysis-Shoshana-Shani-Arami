@@ -6,10 +6,6 @@ library(ggplot2)
 library(Hmisc)
 
 
-
-# normalization *********************************************************************************
-
-
 load("~/cluster_jobs/UMAP_Objects.RData")
 
 my_genes <- c("Camkmt","Calm1","Calm2","Calm3","Actb")
