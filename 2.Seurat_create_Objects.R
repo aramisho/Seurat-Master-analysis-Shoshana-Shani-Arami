@@ -503,8 +503,6 @@ save(Object_VISl, file = "Object_VISl.RData")
 save(Object_VISp, file = "Object_VISp.RData")
 save(Object_VISm, file = "Object_VISm.RData")
 
-save(Object_ACA, Object_AI,Object_SSs_GU_VISC_AIp, Object_TEa_PERI_ECT,Object_SSp,
-     Object_RSP,Object_PTLp,Object_AUD,Object_ENT,Object_HIP,Object_MOp,Object_MOs_FRP,
-     Object_PAR_POST_PRE_SUB_ProS,Object_PL_ILA_ORB, file = "UMAP_Objects.RData")
+
 
 
