@@ -7,7 +7,6 @@ library(ggplot2)
 library(tidyverse)
 
 #Loading and repeating the previous step
-#No need to run previous steps again
 
 load("~/cluster_jobs/NEWsplits/Object_ACA.RData") 
 load("~/cluster_jobs/NEWsplits/Object_AI.RData")
