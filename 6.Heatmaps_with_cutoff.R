@@ -39,41 +39,6 @@ MOp_seurat_list_log[[1]] <- ScaleData(MOp_seurat_list_log[[1]], features = all.g
 
 
 
-
-#RSP_seurat_list_log[[1]]@meta.data$number <- (RSP_seurat_list_log[[1]]@meta.data$subclass)# creating metadata column named number with subclass as rows
-
-#RSP_seurat_list_log[[1]]@meta.data$CellNumber<- length(RSP_seurat_list_log[[1]]@meta.data$orig.ident) #creating metadata coulmn named CellNumber with the total length of cells
-
-#RSP_subnumber<- as.data.frame(table(RSP_seurat_list_log[[1]]@meta.data$subclass))   #creating df from subclass name and number of cells 
-
-#colnames(RSP_subnumber)<- c("number","subclassCount")
-
-#RSP_seurat_list_log[[1]]@meta.data<- merge(RSP_seurat_list_log[[1]]@meta.data,RSP_subnumber,by="number") 
-
-
-
-
-
-
-
-
-
-HIP_seurat_list_log[[1]]@meta.data$number <- (HIP_seurat_list_log[[1]]@meta.data$subclass)# creating metadata column named number with subclass as rows
-
-HIP_seurat_list_log[[1]]@meta.data$CellNumber<- length(HIP_seurat_list_log[[1]]@meta.data$orig.ident) #creating metadata coulmn named CellNumber with the total length of cells
-
-HIP_subnumber<- as.data.frame(table(HIP_seurat_list_log[[1]]@meta.data$subclass))   #creating df from subclass name and number of cells 
-
-colnames(HIP_subnumber)<- c("number","subclassCount")
-
-
-
-
-
-#HIP_seurat_list_log[[1]]@meta.data$number [HIP_seurat_list_log[[1]]@meta.data$subclass == as.character(HIP_subnumber$number[1])] <- HIP_subnumber$subclassCount[1]
-
-
-
 NUMBER <- function(seuratobj,numberlist) {
   
   for (i in 1:length(numberlist$number)) {
@@ -98,9 +63,16 @@ NUMBER(HIP_seurat_list_log,HIP_subnumber)
 
 
 
+HIP_seurat_list_log[[1]]@meta.data$number <- (HIP_seurat_list_log[[1]]@meta.data$subclass)# creating metadata column named number with subclass as rows
+
+HIP_seurat_list_log[[1]]@meta.data$CellNumber<- length(HIP_seurat_list_log[[1]]@meta.data$orig.ident) #creating metadata coulmn named CellNumber with the total length of cells
+
+HIP_subnumber<- as.data.frame(table(HIP_seurat_list_log[[1]]@meta.data$subclass))   #creating df from subclass name and number of cells 
+
+colnames(HIP_subnumber)<- c("number","subclassCount")
 
 
-
+#HIP_seurat_list_log[[1]]@meta.data$number [HIP_seurat_list_log[[1]]@meta.data$subclass == as.character(HIP_subnumber$number[1])] <- HIP_subnumber$subclassCount[1]
 
 
 
@@ -127,18 +99,12 @@ colnames(MOp_subnumber)<- c("number","subclassCount")
 
 
 
-Idents(object = RSP_seurat_list_log[[1]])
 
 Idents(object = MOs_FRP_seurat_list_log[[1]])
 
 Idents(object = MOp_seurat_list_log[[1]])
 
 Idents(object = HIP_seurat_list_log[[1]])
-
-
-
-
-#Idents(object = RSP_seurat_list_log[[1]]) <- "subclass"
 
 
 
@@ -155,14 +121,6 @@ HIP_subnumber
 MOp_subnumber
 
 
-RSP_subnumber
-
-
-
-
-as.list(subset(RSP_subnumber, subclassCount >100)["number" ] )  
-
-
 
 
 as.list(subset(MOs_FRP_subnumber, subclassCount >100)["number" ] )  
@@ -174,13 +132,6 @@ as.list(subset(HIP_subnumber, subclassCount >100)["number" ] )
 as.list(subset(MOp_subnumber, subclassCount >100)["number" ] )  
 
 
-
-
-
-
-#RSP_subsetOver100 <-  subset(x = RSP_seurat_list_log[[1]], idents =  c(  "Astro",  "L2/3 IT CTX", "L2/3 IT PPP" ,"L4 RSP-ACA" , 
-#                                                                             "L4/5 IT CTX", "L5 IT CTX",   "L5 PT CTX",   "L5/6 NP CTX", "L6 CT CTX",  "L6 IT CTX",
-#                                                                           "Lamp5","Oligo","Pvalb","Sncg","Sst",  "Vip" ))
 
 
 MOs_FRPsubsetOver100 <-  subset(x = MOs_FRP_seurat_list_log[[1]], idents =  c(  "L2/3 IT CTX", "L4/5 IT CTX", "L5 IT CTX"  , 
@@ -220,11 +171,6 @@ HIP_FRPsubsetOver100 <-  subset(x = HIP_seurat_list_log[[1]], idents =  c(  "Ast
 
 
 
-Idents(object = RSP_subsetOver100) 
-levels(x = RSP_subsetOver100)
-
-
-
 Idents(object = MOs_FRPsubsetOver100) 
 levels(x = MOs_FRPsubsetOver100)
 
@@ -239,7 +185,7 @@ levels(x = HIP_FRPsubsetOver100)
 
 listsubsetOver100<-c()
 
-listsubsetOver100 <- append(listsubsetOver100, c( HIP=  HIP_FRPsubsetOver100 ,MOp= MOpsubsetOver100,MOs_FRP=MOs_FRPsubsetOver100))#, RSP= RSP_subsetOver100))
+listsubsetOver100 <- append(listsubsetOver100, c( HIP=  HIP_FRPsubsetOver100 ,MOp= MOpsubsetOver100,MOs_FRP=MOs_FRPsubsetOver100))
 
 
 
