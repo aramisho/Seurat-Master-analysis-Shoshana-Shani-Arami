@@ -308,7 +308,7 @@ ploting_heatmap <- function(list, gene_list,number) {
     
     
     g<- DoHeatmap(subset(list[[i]], downsample = number), 
-                  features = my_genes, group.by = "subclass" ,slot='scale.data' ,angle = 90,# assay = RNA,
+                  features = my_genes, group.by = "subclass" ,slot='scale.data' ,angle = 90, assay = "RNA",
                   draw.lines= FALSE,size = 3)  + scale_fill_distiller(palette = "YlGnBu") + #scale_fill_gradientn(colors = PurpleAndYellow(), na.value = "white") ,na.value = "white"
       
     
